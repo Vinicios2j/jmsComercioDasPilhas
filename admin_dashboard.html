@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo - JMS</title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/admin_dashboard.css">
+
+  <!-- Autenticação -->
+  <script src="js/authVerify.js" defer></script>
+
+  <!-- Script principal -->
+  <script src="js/admin_dashboard.js" defer></script>
+</head>
+
+<body>
+  <!-- CONTEÚDO PRINCIPAL -->
+  <div class="main-content">
+    <h1>Bem-vindo ao Painel Administrativo JMS</h1>
+    <p>Gerencie clientes, produtos e seções de forma centralizada.</p>
+
+    <!-- BLOCO DE CONTEÚDO ALTERÁVEL -->
+    <div id="contentBox" class="content-box">
+      <h3>Selecione uma opção no menu ao lado.</h3>
+    </div>
+
+    <button id="logoutBtn">Sair</button>
+    <footer>© 2025 JMS Relógios - Sistema Interno</footer>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>Menu</h2>
+    <ul>
+      <li class="active" data-section="clientes">Clientes</li>
+      <li data-section="produtos">Produtos</li>
+      <li data-section="secoes">Seções</li>
+       <li data-section="pedidos">Pedidos</li>
+    </ul>
+  </div>
+</body>
+</html>

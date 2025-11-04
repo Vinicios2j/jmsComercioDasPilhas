@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Produto - JMS Relógios</title>
+  <link rel="stylesheet" href="css/store.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">⌚</span>
+        <span class="brand-name">JMS Relógios</span>
+      </a>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="btnBack" title="Voltar" aria-label="Voltar">←</button>
+        <button class="icon-btn cart" id="btnCart" title="Carrinho" aria-label="Carrinho">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+            <path d="M7 4h-2a1 1 0 0 0 0 2h1l2.68 9.39A2 2 0 0 0 10.6 17h6.78a2 2 0 0 0 1.92-1.44L22 7H8.21"/>
+          </svg>
+          <span id="cartQty" class="badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Produto -->
+  <main class="product-page">
+    <section class="product-view">
+      <div class="product-img">
+        <img id="productImage" src="" alt="Imagem do produto">
+      </div>
+
+      <div class="product-info">
+        <h1 id="productName"></h1>
+        <div class="code" id="productCode"></div>
+
+        <div id="rating" class="rating">⭐⭐⭐⭐☆ <span class="muted">(45 avaliações)</span></div>
+
+        <p id="productDesc" class="description"></p>
+        <button id="toggleDesc" class="btn-ghost small">Ver mais</button>
+
+        <div class="price-box">
+          <h3>💰 Preço</h3>
+          <p><strong>Varejo:</strong> <span id="priceVarejo"></span></p>
+          <p><strong>Atacado:</strong> <span id="priceAtacado"></span></p>
+          <small class="muted">Acima de <strong>5 unidades</strong> sai preço de atacado.</small>
+        </div>
+
+        <div class="actions">
+          <label>Quantidade</label>
+          <input type="number" id="qtyInput" value="1" min="1" max="99">
+          <button id="addToCart" class="btn-gold">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Info adicional -->
+    <section class="extra-info">
+      <h2>Detalhes Técnicos</h2>
+      <ul>
+        <li>Marca: JMS</li>
+        <li>Garantia: 12 meses</li>
+        <li>Disponibilidade: Imediata</li>
+        <li>Envio: Correios e Transportadora</li>
+      </ul>
+    </section>
+
+    <!-- Produtos relacionados -->
+    <section class="related">
+      <h2>Você também pode gostar</h2>
+      <div id="relatedGrid" class="grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      © <span id="year"></span> JMS Relógios — Todos os direitos reservados
+    </div>
+  </footer>
+
+  <script src="js/product.js"></script>
+</body>
+</html>

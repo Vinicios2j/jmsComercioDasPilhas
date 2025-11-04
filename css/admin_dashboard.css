@@ -1,0 +1,447 @@
+/* ======== ESTILO GERAL ======== */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #05021a, #0a0f3b);
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ======== CONTEÚDO PRINCIPAL ======== */
+.main-content {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-sizing: border-box;
+  overflow-y: auto; /* ✅ permite scroll interno */
+  height: 100vh;
+  scrollbar-width: thin;
+  scrollbar-color: #FFD700 rgba(255,255,255,0.05);
+}
+
+/* Scroll bonito */
+.main-content::-webkit-scrollbar {
+  width: 8px;
+}
+.main-content::-webkit-scrollbar-thumb {
+  background: #FFD700;
+  border-radius: 8px;
+}
+.main-content::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+}
+
+.main-content h1 {
+  color: #FFD700;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.main-content p {
+  color: #ccc;
+  font-size: 1.05em;
+  margin-bottom: 20px;
+}
+
+/* BLOCO DE CONTEÚDO */
+.content-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.05);
+  border-radius: 12px;
+  padding: 25px;
+  height: auto; /* 🔥 cresce conforme o conteúdo */
+  margin-bottom: 30px;
+}
+
+
+/* ======== BOTÃO DE SAIR ======== */
+#logoutBtn {
+  background: #FFD700;
+  color: #0a0f3b;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+  margin-top: 20px; /* antes estava auto */
+}
+
+#logoutBtn:hover {
+  background: #ffea00;
+  transform: translateY(-2px);
+}
+
+/* ======== SIDEBAR ======== */
+.sidebar {
+  width: 230px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 1px solid rgba(255, 215, 0, 0.3);
+  box-shadow: -3px 0 15px rgba(255, 215, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 0;
+}
+
+.sidebar h2 {
+  color: #FFD700;
+  font-size: 1.4em;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  margin: 0;
+}
+
+.sidebar li {
+  text-align: center;
+  padding: 15px 0;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.sidebar li:hover {
+  background: rgba(255, 215, 0, 0.1);
+  color: #FFD700;
+}
+
+.sidebar li.active {
+  background: rgba(255, 215, 0, 0.15);
+  color: #FFD700;
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 #FFD700;
+}
+
+/* ======== FOOTER ======== */
+footer {
+  font-size: 0.85em;
+  color: #777;
+  text-align: center;
+  margin-top: 40px;
+  width: 100%;
+}
+
+/* ======== ANIMAÇÃO ======== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ======== BOTÃO ADICIONAR ======== */
+.btn-add {
+  background: #FFD700;
+  color: #0a0f3b;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  cursor: pointer;
+  margin: 15px 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.25);
+}
+
+.btn-add:hover {
+  background: #ffea00;
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+/* ======== BLOCO DE DADOS ======== */
+.data-box {
+  margin-top: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 215, 0, 0.15);
+}
+
+/* ======== ANIMAÇÃO SUAVE ======== */
+.fade {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* ======== FORMULÁRIO DE PRODUTO ======== */
+.form-product {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.form-product label {
+  font-weight: 600;
+  color: #FFD700;
+  margin-top: 5px;
+}
+
+.form-product input,
+.form-product textarea {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 6px;
+  color: #fff;
+  padding: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+.form-product input:focus,
+.form-product textarea:focus {
+  border-color: #FFD700;
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.btn-enviar {
+  background: #FFD700;
+  color: #0a0f3b;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-enviar:hover {
+  background: #ffea00;
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+}
+
+/* ======== MODAL OVERLAY ======== */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-in-out;
+  backdrop-filter: blur(4px);
+  overflow-y: auto; /* 🔥 permite rolar se a tela for pequena */
+  padding: 20px; /* espaço interno pra evitar corte do modal */
+}
+
+/* ======== MODAL CONTEÚDO ======== */
+.modal-content {
+  background: rgba(20, 20, 40, 0.95);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
+  padding: 25px 30px;
+  width: 100%;
+  max-width: 500px;
+  color: #fff;
+  animation: modalSlide 0.3s ease-out;
+  position: relative;
+
+  /* 🔥 ajustes novos */
+  max-height: 90vh; /* impede de ultrapassar a tela */
+  overflow-y: auto; /* adiciona scroll dentro do modal */
+  scrollbar-width: thin;
+  scrollbar-color: #FFD700 rgba(255, 255, 255, 0.05);
+}
+
+/* scroll bonito pro modal */
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+  background: #FFD700;
+  border-radius: 6px;
+}
+.modal-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ======== FECHAR BOTÃO ======== */
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.8em;
+  color: #FFD700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.close-modal:hover {
+  color: #fff;
+}
+
+/* ======== ANIMAÇÕES ======== */
+@keyframes modalSlide {
+  from {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ======== TOPO DA SEÇÃO DE PRODUTOS ======== */
+.produtos-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+/* ======== CAMPO DE PESQUISA ======== */
+#searchProduct {
+  flex: 1;
+  min-width: 220px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,215,0,0.3);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-size: 0.95em;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+#searchProduct:focus {
+  border-color: #FFD700;
+  box-shadow: 0 0 8px rgba(255,215,0,0.4);
+  background: rgba(255,255,255,0.12);
+}
+
+.tabela-pedidos {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.tabela-pedidos th, .tabela-pedidos td {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 10px;
+  text-align: left;
+}
+
+.tabela-pedidos th {
+  color: #f2c94c;
+}
+
+.btn-proximo {
+  background: #f2c94c;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-proximo:hover {
+  background: #d4b23d;
+}
+
+/* Modal rastreio */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: #111;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 320px;
+  box-shadow: 0 0 20px #f2c94c33;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+}
+
+.modal-actions button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-actions .cancelar {
+  background: #a00;
+  color: #fff;
+}
+
+/* ====== BARRA DE PESQUISA - PEDIDOS ====== */
+.pedidos-topbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+#searchPedido {
+  background: linear-gradient(145deg, #0b0b0b, #111);
+  border: 1px solid rgba(242, 201, 76, 0.5);
+  color: #f8f8f8;
+  font-size: 0.95rem;
+  padding: 10px 14px;
+  border-radius: 8px;
+  width: 300px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.08);
+}
+
+#searchPedido::placeholder {
+  color: rgba(255, 215, 0, 0.4);
+  font-style: italic;
+}
+
+#searchPedido:hover {
+  border-color: rgba(255, 215, 0, 0.8);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.15);
+}
+
+#searchPedido:focus {
+  border-color: #f2c94c;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+  background: linear-gradient(145deg, #101010, #141414);
+}

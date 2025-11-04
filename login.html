@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar ou Criar Conta — JMS Relógios</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://kit.fontawesome.com/a2e0c6b0d1.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="login-container" id="loginBox">
+    <h1 id="formTitle">Bem-vindo à JMS</h1>
+    <h2 id="formSubtitle">Acesse sua conta para continuar</h2>
+
+    <!-- Formulário de Login -->
+    <form id="loginForm" class="form active">
+      <input type="text" id="loginUsername" placeholder="Usuário ou E-mail" required>
+      <input type="password" id="loginPassword" placeholder="Senha" required>
+      <button type="submit">Entrar</button>
+      <p id="loginMessage"></p>
+      <p class="toggle-link">Não tem conta? <a href="#" id="showRegister">Cadastre-se</a></p>
+    </form>
+
+    <!-- Formulário de Cadastro -->
+    <form id="registerForm" class="form hidden">
+      <input type="text" id="registerName" placeholder="Nome completo" required>
+      <input type="text" id="registerCpf" placeholder="CPF (somente números)" maxlength="14" required>
+      <input type="email" id="registerEmail" placeholder="E-mail" required>
+      <input type="tel" id="registerPhone" placeholder="Telefone (DDD + número)" required>
+      <input type="password" id="registerPassword" placeholder="Senha" required>
+      <button type="submit">Cadastrar</button>
+      <p id="registerMessage"></p>
+      <p class="toggle-link">Já tem conta? <a href="#" id="showLogin">Entrar</a></p>
+    </form>
+  </div>
+
+  <!-- BOTÃO DE VOLTAR -->
+  <button id="backHomeBtn" class="back-home-btn">
+    <i class="fas fa-arrow-left"></i> Voltar para o Início
+  </button>
+
+  <footer>© 2025 JMS Relógios — Todos os direitos reservados</footer>
+
+  <script src="js/login.js"></script>
+  <script>
+    // Redireciona ao clicar no botão voltar
+    document.getElementById('backHomeBtn').addEventListener('click', () => {
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

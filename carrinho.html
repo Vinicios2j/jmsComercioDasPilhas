@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meu Carrinho — JMS Relógios</title>
+  <link rel="stylesheet" href="css/carrinho.css"/>
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+</head>
+<body>
+
+  <!-- ======== HEADER (MESMO DO CATÁLOGO) ======== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">⌚</span>
+        <span class="brand-name">JMS Relógios</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Seções">
+        <button class="nav-link" data-section="todos" aria-current="page">Carrinho</button>
+        <button class="nav-link" data-section="masculino"><a href="index.html">Todos</a></button>
+        <button class="nav-link" data-section="feminino">Feminino</button>
+        <button class="nav-link" data-section="smart">Smart</button>
+        <button class="nav-link" data-section="acessorios">Acessórios</button>
+      </nav>
+
+      <div class="header-actions">
+        <div class="search">
+          <input id="searchInput" type="search" placeholder="Buscar modelos, códigos..." aria-label="Buscar"/>
+          <button id="searchBtn" class="btn-gold">Buscar</button>
+        </div>
+
+        <button class="icon-btn" id="btnAccount" title="Minha conta" aria-label="Minha conta">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+            <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-5.33 0-8 2.67-8 6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1c0-3.33-2.67-6-8-6Z"/>
+          </svg>
+        </button>
+
+        <button class="icon-btn cart" id="btnCart" title="Carrinho" aria-label="Carrinho">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+            <path d="M7 4h-2a1 1 0 0 0 0 2h1l2.68 9.39A2 2 0 0 0 10.6 17h6.78a2 2 0 0 0 1.92-1.44L22 7H8.21"/>
+          </svg>
+          <span id="cartQty" class="badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======== CONTEÚDO DO CARRINHO ======== -->
+  <main class="cart-container">
+    <!-- LISTA DE ITENS -->
+    <section class="cart-left">
+      <h2 class="cart-title">Itens do Carrinho</h2>
+      <div id="cartList" class="cart-list"></div>
+
+      <div id="cartEmpty" class="cart-empty hidden">
+        <p>Seu carrinho está vazio 😔</p>
+        <a href="index.html" class="btn-gold">Voltar às compras</a>
+      </div>
+
+      <div class="back-shop">
+        <a href="index.html" class="btn-ghost">← Continuar Comprando</a>
+      </div>
+    </section>
+
+    <!-- RESUMO E FRETE -->
+    <aside class="cart-summary">
+      <h2>Resumo da Compra</h2>
+
+      <div class="frete-section">
+        <h3>Calcular Frete</h3>
+        <input type="text" id="cepInput" placeholder="Digite seu CEP" maxlength="9">
+        <button id="btnFrete" class="btn-gold small">Calcular</button>
+        <p id="freteInfo" class="muted"></p>
+      </div>
+
+      <p><strong>Subtotal:</strong> <span id="subtotal">R$ 0,00</span></p>
+      <p><strong>Frete:</strong> <span id="frete">R$ 0,00</span></p>
+      <p class="total"><strong>Total:</strong> <span id="total">R$ 0,00</span></p>
+
+      <button id="finalizarCompra" class="btn-gold">Finalizar Compra</button>
+      <button id="limparCarrinho" class="btn-ghost">Esvaziar Carrinho</button>
+    </aside>
+  </main>
+
+  <!-- ESCOLHA DE ENTREGA OU RETIRADA -->
+<section id="tipoEntregaSection" class="entrega-section" style="display: none;">
+  <div class="sessEntre">
+    <h2>Escolha o Tipo de Recebimento</h2>
+    <p>Selecione uma das opções abaixo:</p>
+
+    <div class="opcoes-entrega">
+      <button id="btnEntregaDomicilio" class="btn-gold">🚚 Entrega em Domicílio<br><small>(possui custo de frete)</small></button>
+      <button id="btnRetirarLoja" class="btn-ghost">🏬 Retirar na Loja<br><small>(grátis)</small></button>
+    </div>
+  </div>
+</section>
+
+
+<!-- NOVA DIV DE ENDEREÇO COMPLETA -->
+<section id="enderecoSection" class="endereco-section" style="display: none;">
+  <h2>Endereço de Entrega</h2>
+
+  <form id="formEndereco">
+    <!-- CEP -->
+    <div class="form-group">
+      <label for="enderecoCep">CEP</label>
+      <input type="text" id="enderecoCep" readonly>
+    </div>
+
+    <!-- Nome e Telefone -->
+    <div class="form-row">
+      <div class="form-group half">
+        <label for="enderecoNome">Nome</label>
+        <input type="text" id="enderecoNome" placeholder="Nome completo" required>
+      </div>
+
+      <div class="form-group half">
+        <label for="enderecoTelefone">Telefone</label>
+        <input type="tel" id="enderecoTelefone" placeholder="(DDD) 99999-9999" maxlength="15" required>
+      </div>
+    </div>
+
+    <!-- Rua e Número -->
+    <div class="form-row">
+      <div class="form-group half">
+        <label for="enderecoRua">Rua</label>
+        <input type="text" id="enderecoRua" readonly>
+      </div>
+
+      <div class="form-group half">
+        <label for="enderecoNumero">Número</label>
+        <input type="text" id="enderecoNumero" placeholder="Ex: 123" required>
+      </div>
+    </div>
+
+    <!-- Bairro e Cidade -->
+    <div class="form-row">
+      <div class="form-group half">
+        <label for="enderecoBairro">Bairro</label>
+        <input type="text" id="enderecoBairro" readonly>
+      </div>
+
+      <div class="form-group half">
+        <label for="enderecoCidade">Cidade</label>
+        <input type="text" id="enderecoCidade" readonly>
+      </div>
+    </div>
+
+    <!-- Estado e Complemento -->
+    <div class="form-row">
+      <div class="form-group half">
+        <label for="enderecoEstado">Estado</label>
+        <input type="text" id="enderecoEstado" readonly>
+      </div>
+
+      <div class="form-group half">
+        <label for="enderecoComplemento">Complemento</label>
+        <input type="text" id="enderecoComplemento" placeholder="Apartamento, bloco, referência..." required>
+      </div>
+    </div>
+
+    <button type="button" id="confirmarEndereco" class="btn-gold">Confirmar Endereço</button>
+  </form>
+</section>
+
+<!-- FORMA DE PAGAMENTO -->
+<section id="pagamentoSection" class="pagamento-section" style="display:none;">
+  <div class="pagDiv">
+ <h2>💳 Escolha a Forma de Pagamento</h2>
+  <p class="pagamento-sub">Selecione uma opção para ver o valor final.</p>
+
+  <div class="pagamento-opcoes">
+    <label class="pay-option" data-method="pix" tabindex="0">
+      <input type="radio" name="formaPagamento" id="payPix" value="pix" />
+      <div class="pay-icon">⚡</div>
+      <div class="pay-title">PIX à vista</div>
+      <div class="pay-desc">Confirmação rápida</div>
+    </label>
+
+    <label class="pay-option" data-method="cartao" tabindex="0">
+      <input type="radio" name="formaPagamento" id="payCartao" value="cartao" />
+      <div class="pay-icon">💳</div>
+      <div class="pay-title">Cartão de crédito</div>
+      <div class="pay-desc">Parcelamento em até 12x*</div>
+    </label>
+  </div>
+
+  <div id="boxParcelas" class="parcelas" style="display:none;">
+    <label for="selectParcelas">Parcelar em:</label>
+    <select id="selectParcelas">
+      <option value="1">1x (à vista no cartão)</option>
+      <option value="2">2x</option>
+      <option value="3">3x</option>
+      <option value="4">4x</option>
+    </select>
+    <p id="previewParcelas" class="muted"></p>
+  </div>
+
+  <div class="pagamento-total">
+    <p><strong>Total a pagar:</strong> <span id="totalPagamento">—</span></p>
+  </div>
+
+  <div class="pagamento-actions">
+    <button id="confirmarPagamento" class="btn-gold" disabled>Continuar para Resumo</button>
+    <small class="muted">*Simulação de parcelas sem juros (exibição). Cobrança real ocorre no gateway.</small>
+  </div>
+  </div>
+
+</section>
+
+<!-- RESUMO FINAL DO PEDIDO -->
+<!-- RESUMO FINAL DO PEDIDO -->
+<section id="resumoPedidoSection" class="resumo-section" style="display: none;">
+  <h2>📦 Resumo do Pedido</h2>
+
+  <div id="resumoDadosCliente" class="resumo-box"></div>
+  <div id="resumoEndereco" class="resumo-box"></div>
+  <div id="resumoPagamento" class="resumo-box"></div>
+  <div id="resumoItens" class="resumo-box"></div>
+
+  <p class="resumo-total"><strong>Total Final:</strong> <span id="resumoTotal"></span></p>
+
+  <!-- 🔹 NOVO CAMPO DE TELEFONE -->
+  <div class="form-group resumo-box">
+    <label for="telefoneResumo"><strong>📞 Telefone para Contato</strong></label>
+    <input type="tel" id="telefoneResumo" placeholder="(DDD) 99999-9999" maxlength="15" required style="padding:10px; border-radius:8px; width:100%; border:1px solid rgba(255,255,255,0.2); background:#0b0b0b; color:#fff;">
+    <p id="telefoneAviso" style="color:#ff6666; font-size:0.9rem; display:none; margin-top:4px;">Digite um número válido</p>
+  </div>
+
+  <button id="btnConcluirPedido" type="button" class="btn-gold" disabled>Concluir Pedido</button>
+</section>
+
+<div id="wallet_container"></div>
+
+
+  <!-- ======== FOOTER (MESMO DO CATÁLOGO) ======== -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand">
+          <span class="brand-mark">⌚</span>
+          <span class="brand-name">JMS Relógios</span>
+        </div>
+        <p class="muted">Tradicional, confiável e sempre no tempo certo.</p>
+      </div>
+
+      <div>
+        <h4>Seções</h4>
+        <ul class="footer-list">
+          <li><a href="#" data-section="masculino" class="footer-link">Masculino</a></li>
+          <li><a href="#" data-section="feminino" class="footer-link">Feminino</a></li>
+          <li><a href="#" data-section="smart" class="footer-link">Smart</a></li>
+          <li><a href="#" data-section="acessorios" class="footer-link">Acessórios</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Institucional</h4>
+        <ul class="footer-list">
+          <li><a href="#" class="footer-link">Sobre</a></li>
+          <li><a href="#" class="footer-link">Trocas & Devoluções</a></li>
+          <li><a href="#" class="footer-link">Fale Conosco</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Newsletter</h4>
+        <form id="newsForm" class="newsletter">
+          <input type="email" placeholder="Seu e-mail" aria-label="Seu e-mail" required/>
+          <button class="btn-gold" type="submit">Assinar</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © <span id="year"></span> JMS Relógios — Todos os direitos reservados
+    </div>
+  </footer>
+
+  <script src="js/carrinho.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel do Usuário — JMS Relógios</title>
+  <link rel="stylesheet" href="css/user_dashboard.css">
+  <script src="https://kit.fontawesome.com/a2e0c6b0d1.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <h2>Minha Conta</h2>
+  <ul>
+    <li class="active" data-section="pedidos">
+      <i class="fas fa-box"></i> Meus Pedidos
+    </li>
+    <li data-section="enderecos">
+      <i class="fas fa-map-marker-alt"></i> Endereços
+    </li>
+    <li data-section="dados">
+      <i class="fas fa-user"></i> Meus Dados
+    </li>
+    <li data-section="suporte">
+      <i class="fas fa-headset"></i> Suporte
+    </li>
+    <li id="backToShop">
+  <i class="fas fa-shopping-bag"></i> Voltar às Compras
+</li>
+
+<li id="logoutBtn">
+  <i class="fas fa-sign-out-alt"></i> Logout - Sair Conta
+</li>
+
+  </ul>
+</aside>
+
+<!-- CONTEÚDO -->
+<main class="content">
+  <!-- BOTÃO MENU MOBILE -->
+<button id="menuToggle" class="menu-toggle">
+  ☰
+</button>
+
+  <header class="content-header">
+    <h1>Bem-vindo, <span id="userName"></span> 👋</h1>
+    <p>Aqui você pode visualizar seus dados, acompanhar pedidos e gerenciar endereços.</p>
+  </header>
+
+  <!-- MEUS PEDIDOS -->
+  <section class="info-card" id="pedidosSection">
+    <h2><i class="fas fa-box"></i> Meus Pedidos</h2>
+    <p>Você ainda não possui pedidos cadastrados.</p>
+  </section>
+
+  <!-- MEUS DADOS -->
+  <section class="info-card hidden" id="dadosSection">
+    <h2><i class="fas fa-user"></i> Meus Dados</h2>
+    <p><strong>E-mail:</strong> <span id="userEmail"></span></p>
+    <p><strong>CPF:</strong> <span id="userCpf"></span></p>
+    <p><strong>IP:</strong> <span id="userIp"></span></p>
+    <p><strong>Criado em:</strong> <span id="userCreated"></span></p>
+  </section>
+
+  <!-- ENDEREÇOS -->
+  <section class="info-card hidden" id="enderecosSection">
+    <h2><i class="fas fa-map-marker-alt"></i> Meus Endereços</h2>
+    <p>Nenhum endereço cadastrado.</p>
+  </section>
+
+  <!-- SUPORTE -->
+  <section class="info-card hidden" id="suporteSection">
+    <h2><i class="fas fa-headset"></i> Central de Suporte</h2>
+    <p>Envie uma mensagem para nossa equipe de atendimento. Responderemos o mais rápido possível 💬</p>
+
+    <form id="suporteForm" class="support-form">
+      <label for="assunto">Assunto:</label>
+      <input type="text" id="assunto" placeholder="Ex: Problema com pedido #1234" required>
+
+      <label for="mensagem">Mensagem:</label>
+      <textarea id="mensagem" rows="4" placeholder="Descreva seu problema ou dúvida..." required></textarea>
+
+      <button type="submit" class="btn-confirm">Enviar Mensagem</button>
+    </form>
+
+    <div id="suporteFeedback" class="suporte-feedback hidden"></div>
+  </section>
+</main>
+
+  </div>
+
+  <!-- MODAL DE CONFIRMAÇÃO DE LOGOUT -->
+<div id="logoutModal" class="modal-overlay hidden">
+  <div class="modal-content">
+    <h3><i class="fas fa-exclamation-triangle"></i> Tem certeza que deseja sair?</h3>
+    <p>Ao sair, você precisará fazer login novamente para acessar sua conta.</p>
+    <div class="modal-buttons">
+      <button id="confirmLogout" class="btn-confirm">Sim, sair</button>
+      <button id="cancelLogout" class="btn-cancel">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+
+  <script src="js/user_dashboard.js"></script>
+</body>
+</html>

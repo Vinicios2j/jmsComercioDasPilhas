@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JMS Relógios — Catálogo</title>
+  <link rel="stylesheet" href="css/store.css"/>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="brand">
+        <span class="brand-mark">⌚</span>
+        <span class="brand-name">JMS Relógios</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Seções">
+        <button class="nav-link" data-section="todos" aria-current="page">Todos</button>
+        <button class="nav-link" data-section="masculino">Masculino</button>
+        <button class="nav-link" data-section="feminino">Feminino</button>
+        <button class="nav-link" data-section="smart">Smart</button>
+        <button class="nav-link" data-section="acessorios">Acessórios</button>
+      </nav>
+
+      <div class="header-actions">
+        <div class="search">
+          <input id="searchInput" type="search" placeholder="Buscar modelos, códigos..." aria-label="Buscar"/>
+          <button id="searchBtn" class="btn-gold">Buscar</button>
+        </div>
+
+        <button class="icon-btn" id="btnAccount" title="Minha conta" aria-label="Minha conta">
+          <!-- user icon -->
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+            <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-5.33 0-8 2.67-8 6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1c0-3.33-2.67-6-8-6Z"/>
+          </svg>
+        </button>
+
+        <button class="icon-btn cart" id="btnCart" title="Carrinho" aria-label="Carrinho">
+          <!-- cart icon -->
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+            <path d="M7 4h-2a1 1 0 0 0 0 2h1l2.68 9.39A2 2 0 0 0 10.6 17h6.78a2 2 0 0 0 1.92-1.44L22 7H8.21"/>
+          </svg>
+          <span id="cartQty" class="badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero / Seções iniciais -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Elegância e precisão no seu pulso</h1>
+      <p>Descubra nossa curadoria de relógios e acessórios, do clássico ao smart.</p>
+      <div class="hero-cta">
+        <a href="#catalogo" class="btn-gold">Ver catálogo</a>
+        <a href="#" class="btn-ghost">Promoções</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Destaques rápidos -->
+  <section class="highlights">
+    <article class="card-glass">
+      <h3>Envio Rápido</h3>
+      <p>Postamos em até 24h úteis após a confirmação.</p>
+    </article>
+    <article class="card-glass">
+      <h3>Garantia</h3>
+      <p>Loja parceira, suporte e garantia direto com a JMS.</p>
+    </article>
+    <article class="card-glass">
+      <h3>Atacado e Varejo</h3>
+      <p>Condições especiais para lojistas e revendas.</p>
+    </article>
+  </section>
+
+  <!-- Catálogo -->
+  <main id="catalogo" class="catalog">
+    <div class="catalog-head">
+      <h2>Catálogo</h2>
+      <span id="resultCount" class="muted"></span>
+      <div class="filters">
+        <select id="priceMode" class="select">
+          <option value="varejo-dinheiro">Varejo (Dinheiro)</option>
+          <option value="varejo-cartao">Varejo (Cartão)</option>
+          <option value="atacado-dinheiro">Atacado (Dinheiro)</option>
+          <option value="atacado-cartao">Atacado (Cartão)</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="gridProdutos" class="grid"></div>
+    <div id="emptyState" class="empty hidden">
+      Nada encontrado. Tente outro termo ou seção.
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand">
+          <span class="brand-mark">⌚</span>
+          <span class="brand-name">JMS Relógios</span>
+        </div>
+        <p class="muted">Tradicional, confiável e sempre no tempo certo.</p>
+      </div>
+
+      <div>
+        <h4>Seções</h4>
+        <ul class="footer-list">
+          <li><a href="#" data-section="masculino" class="footer-link">Masculino</a></li>
+          <li><a href="#" data-section="feminino" class="footer-link">Feminino</a></li>
+          <li><a href="#" data-section="smart" class="footer-link">Smart</a></li>
+          <li><a href="#" data-section="acessorios" class="footer-link">Acessórios</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Institucional</h4>
+        <ul class="footer-list">
+          <li><a href="#" class="footer-link">Sobre</a></li>
+          <li><a href="#" class="footer-link">Trocas & Devoluções</a></li>
+          <li><a href="#" class="footer-link">Fale Conosco</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Newsletter</h4>
+        <form id="newsForm" class="newsletter">
+          <input type="email" placeholder="Seu e-mail" aria-label="Seu e-mail" required/>
+          <button class="btn-gold" type="submit">Assinar</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © <span id="year"></span> JMS Relógios — Todos os direitos reservados
+    </div>
+  </footer>
+
+  <script src="js/store.js"></script>
+</body>
+</html>
